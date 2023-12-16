@@ -6,7 +6,7 @@ const NavBar = () => {
         <input className="search" placeholder="Buscar filmes" />
         <button className="btn-search">Buscar</button>
       </form>
-      <h2>5 Resultados</h2>
+      <h2 className="num-results">5 Resultados</h2>
     </div>
   );
 };

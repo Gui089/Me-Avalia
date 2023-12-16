@@ -47,7 +47,7 @@ body {
 .box {
   width: 42rem;
   max-width: 42rem;
-  background-color: var(--color-background-500);
+  background-color: #fff0e9;
   border-radius: 0.9rem;
   overflow: scroll;
   position: relative;
@@ -151,7 +151,7 @@ body {
   align-items: center;
 
   padding: 1.6rem 3.2rem;
-  border-bottom: 1px solid var(--color-background-100);
+  border-bottom: 1px solid #fae3d9;
 }
 
 .list.list-movies li {
