@@ -166,6 +166,7 @@ body {
 .list img {
   width: 100%;
   grid-row: 1 / -1;
+  cursor: pointer;
 }
 
 .list h3 {
