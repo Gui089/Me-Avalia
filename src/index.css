@@ -246,13 +246,13 @@ body {
 }
 
 .details img {
-  width: 33%;
+  width: 40%;
 }
 
 .details-overview {
   width: 100%;
   padding: 2.4rem 3rem;
-  background-color: var(--color-background-100);
+  background-color: #efcec0;
   display: flex;
   flex-direction: column;
   gap: 1.4rem;
@@ -332,4 +332,14 @@ body {
 .list::-webkit-scrollbar {
   display: none;
   scroll-behavior: smooth;
+}
+
+.movies-watched {
+  position: absolute;
+  left: 50%;
+  top: 15%;
+}
+
+#star-img {
+  width: 20px;
 }
