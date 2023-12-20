@@ -123,7 +123,7 @@ body {
   aspect-ratio: 1;
   border-radius: 50%;
   border: none;
-  background-color: var(--color-background-900);
+  background-color: #fae3d9;
   color: var(--color-text);
   font-size: 1.4rem;
   font-weight: bold;
@@ -282,8 +282,9 @@ body {
 }
 
 .btn-add {
-  background-color: var(--color-primary);
-  color: var(--color-text);
+  margin-bottom: 70px;
+  background-color: #61c0bf;
+  color: #212529;
   border: none;
   border-radius: 10rem;
   font-size: 1.4rem;
@@ -342,4 +343,65 @@ body {
 
 #star-img {
   width: 20px;
+}
+
+.avable-movie {
+  background-color: #efcec0;
+  box-shadow: 0 8px 20px rgba(206, 206, 206, 0.8);
+  width: 80%;
+  height: 170px;
+  border-radius: 10px;
+  margin-top: 5%;
+  margin-left: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.select-nota {
+  position: absolute;
+  box-shadow: 0 8px 20px rgba(126, 126, 126, 0.8);
+  background-color: rgb(255, 222, 37);
+  top: 63%;
+  left: 43%;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+}
+
+.tittle-nota {
+  position: absolute;
+  color: #30353a;
+  top: 60%;
+  left: 41%;
+}
+
+.movies-list {
+  background-color: #efcec0;
+  box-shadow: 0 8px 20px rgba(126, 126, 126, 0.8);
+  width: 50%;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  position: absolute;
+  margin-top: -92%;
+  margin-left: 44%;
+}
+
+.movies-list h2 {
+  margin-bottom: 10px;
+}
+
+.header-info {
+  display: flex;
+  margin-top: 30px;
+  margin-left: -143px;
+}
+
+.movie-watch {
+  margin-top: 70.5px;
+  position: absolute;
+  background-color: #fff0e9;
+  width: 100%;
+  margin-left: -20px;
 }

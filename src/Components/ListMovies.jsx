@@ -1,9 +1,27 @@
+import { useState } from "react";
+
 const ListMovies = ({
   movie,
   movieWatch,
   handleClickBack,
   handleClickMovie,
 }) => {
+  const [moviesAva, setMoviesAva] = useState([]);
+  const [visibleList, setVisibleList] = useState(false);
+
+  const handleVisibleLIst = () => setVisibleList((v) => !v);
+
+  const handleAddMovie = (e) => {
+    e.preventDefault();
+
+    if (!moviesAva.find((movieAva) => movieAva.Title === movieWatch.Title)) {
+      setMoviesAva((prevMoviesAva) => [...prevMoviesAva, movieWatch]);
+    }
+    handleClickBack();
+  };
+
+  console.log("Filmes na lista de Ava:" + moviesAva);
+
   return (
     <>
       {movie && (
@@ -12,7 +30,9 @@ const ListMovies = ({
             {movie.map((movies) => (
               <li key={movies.Title}>
                 <img
-                  onClick={() => handleClickMovie(movies)}
+                  onClick={() => {
+                    handleClickMovie(movies);
+                  }}
                   src={movies.Poster}
                   alt={movies.Plot}
                 />
@@ -44,6 +64,28 @@ const ListMovies = ({
                 </p>
               </header>
 
+              <div className="avable-movie">
+                <form onSubmit={handleAddMovie}>
+                  <h3 className="tittle-nota">Sua nota:</h3>
+                  <select className="select-nota">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                  </select>
+                  <button onClick={handleVisibleLIst} className="btn-add">
+                    {" "}
+                    + Adicionar a lista
+                  </button>
+                </form>
+              </div>
+
               <section className="summary">
                 <p>{movieWatch.Plot}</p>
                 <p>Elenco: {movieWatch.Actors}</p>
@@ -51,6 +93,34 @@ const ListMovies = ({
               </section>
             </li>
           </ul>
+        </div>
+      )}
+      {moviesAva.length !== 0 && visibleList && (
+        <div className="movies-list">
+          <button onClick={handleVisibleLIst} className="btn-toggle">
+            -
+          </button>
+          <h2>FILMES ASSISTIDOS</h2>
+          <div className="header-info">
+            <img id="star-img" src="./img/film-slate.png" alt="logo de filme" />
+            <h3>{moviesAva.length} Filmes</h3>
+            <img id="star-img" src="./img/deadline.png" alt="" />
+            <h3> 0 min</h3>
+          </div>
+          <div className="movie-watch">
+            <ul className="list">
+              {moviesAva.map((movieAva) => (
+                <li key={movieAva.Title}>
+                  <img
+                    style={{ width: 50 }}
+                    src={movieAva.Poster}
+                    alt={movieAva.Plot}
+                  />
+                  <h3>{movieAva.Title}</h3>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       )}
     </>

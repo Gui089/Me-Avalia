@@ -15,11 +15,10 @@ const App = () => {
       setMovieWatch(response);
     };
     getMovie();
+    console.log(movieWatch);
   };
 
   const handleClickBack = () => setMovieWatch(null);
-
-  console.log(movie);
 
   return (
     <>
