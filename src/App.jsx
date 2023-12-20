@@ -6,7 +6,16 @@ const App = () => {
   const [movie, setMovie] = useState(null);
   const [movieWatch, setMovieWatch] = useState(null);
 
-  const handleClickMovie = (movie) => setMovieWatch(movie);
+  const handleClickMovie = (movie) => {
+    const getMovie = async () => {
+      const request = await fetch(
+        `https://www.omdbapi.com/?i=${movie.imdbID}&apikey=3a8989a7`,
+      );
+      const response = await request.json();
+      setMovieWatch(response);
+    };
+    getMovie();
+  };
 
   const handleClickBack = () => setMovieWatch(null);
 

@@ -38,10 +38,10 @@ const ListMovies = ({
                 <h2>{movieWatch.Title}</h2>
                 <p>{movieWatch.Runtime}</p>
                 <p>{movieWatch.Genre}</p>
-                {/*  <p>
+                <p>
                   <img id="star-img" src="./img/star.png" alt="" />
-                  {movieWatch.imdbID} IMDb rating
-                </p> */}
+                  {movieWatch.Ratings[0].Value} IMDb rating
+                </p>
               </header>
 
               <section className="summary">
