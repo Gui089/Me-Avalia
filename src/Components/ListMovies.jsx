@@ -8,6 +8,7 @@ const ListMovies = ({
 }) => {
   const [moviesAva, setMoviesAva] = useState([]);
   const [visibleList, setVisibleList] = useState(false);
+  const [ratingMovie, setRatingMovie] = useState([]);
 
   const handleVisibleLIst = () => setVisibleList((v) => !v);
 
@@ -18,6 +19,11 @@ const ListMovies = ({
       setMoviesAva((prevMoviesAva) => [...prevMoviesAva, movieWatch]);
     }
     handleClickBack();
+  };
+
+  const handleChangeRating = (e) => {
+    setRatingMovie((prevRating) => [...prevRating, e.target.value]);
+    console.log("Sua nota no filme: " + ratingMovie);
   };
 
   console.log("Filmes na lista de Ava:" + moviesAva);
@@ -67,7 +73,11 @@ const ListMovies = ({
               <div className="avable-movie">
                 <form onSubmit={handleAddMovie}>
                   <h3 className="tittle-nota">Sua nota:</h3>
-                  <select className="select-nota">
+                  <select
+                    value={ratingMovie}
+                    onChange={handleChangeRating}
+                    className="select-nota"
+                  >
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -109,7 +119,7 @@ const ListMovies = ({
           </div>
           <div className="movie-watch">
             <ul className="list">
-              {moviesAva.map((movieAva) => (
+              {moviesAva.map((movieAva, index) => (
                 <li key={movieAva.Title}>
                   <img
                     style={{ width: 50 }}
@@ -117,6 +127,11 @@ const ListMovies = ({
                     alt={movieAva.Plot}
                   />
                   <h3>{movieAva.Title}</h3>
+                  <p>
+                    {" "}
+                    <img id="star-img" src="./img/star-rating.png" alt="" />
+                    Sua nota : {ratingMovie[index]}
+                  </p>
                 </li>
               ))}
             </ul>
