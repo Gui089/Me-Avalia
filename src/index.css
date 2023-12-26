@@ -37,11 +37,11 @@ body {
 }
 
 .main {
-  margin-top: 2.4rem;
   height: calc(100vh - 7.2rem - 3 * 2.4rem);
   display: flex;
   gap: 2.4rem;
-  justify-content: center;
+  float: left;
+  margin-right: 50px;
 }
 
 .box {
@@ -51,6 +51,7 @@ body {
   border-radius: 0.9rem;
   overflow: scroll;
   position: relative;
+  margin-top: 10px;
 }
 
 .loader {
@@ -160,7 +161,7 @@ body {
 }
 
 .list.list-movies li:hover {
-  background-color: var(--color-background-100);
+  background-color: #efcec0;
 }
 
 .list img {
@@ -207,7 +208,7 @@ body {
 .summary {
   padding: 2.2rem 3.2rem 1.8rem 3.2rem;
   border-radius: 0.9rem;
-  background-color: var(--color-background-100);
+  background-color: #efcec0;
   box-shadow: 0 1.2rem 2.4rem rgba(0, 0, 0, 0.2);
 }
 
@@ -232,6 +233,7 @@ body {
 .details {
   line-height: 1.4;
   font-size: 1.4rem;
+  list-style: none;
 }
 
 .details header {
@@ -351,7 +353,7 @@ body {
   width: 80%;
   height: 170px;
   border-radius: 10px;
-  margin-top: 5%;
+  margin-top: 2%;
   margin-left: 10%;
   display: flex;
   justify-content: center;
@@ -396,12 +398,4 @@ body {
   display: flex;
   margin-top: 30px;
   margin-left: -143px;
-}
-
-.movie-watch {
-  margin-top: 70.5px;
-  position: absolute;
-  background-color: #fff0e9;
-  width: 100%;
-  margin-left: -20px;
 }

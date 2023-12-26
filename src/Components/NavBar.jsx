@@ -21,7 +21,7 @@ const NavBar = ({ setMovie, movie }) => {
   }, [listMovie]);
 
   return (
-    <div className="nav-bar">
+    <nav className="nav-bar">
       <img className="logo" src="./img/logo-me-avalia.png" alt="" />
       <form onSubmit={handleFormSubmit} className="form-search" action="">
         <input
@@ -34,7 +34,7 @@ const NavBar = ({ setMovie, movie }) => {
       {listMovie && (
         <h2 className="num-results"> {movie?.length} Resultados</h2>
       )}
-    </div>
+    </nav>
   );
 };
 

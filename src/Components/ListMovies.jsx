@@ -10,10 +10,19 @@ const ListMovies = ({
   const [visibleList, setVisibleList] = useState(false);
   const [ratingMovie, setRatingMovie] = useState([]);
 
-  const handleVisibleLIst = () => setVisibleList((v) => !v);
+  const handleVisibleLIst = (clickedMovie) =>
+    setVisibleList((prev) =>
+      prev?.id === clickedMovie.id ? false : clickedMovie,
+    );
 
   const handleAddMovie = (e) => {
     e.preventDefault();
+    const { rating } = e.target.elements;
+    setRatingMovie((prev) => [
+      ...prev,
+      { ...ratingMovie, userRating: rating.value },
+    ]);
+    setVisibleList(false);
 
     if (!moviesAva.find((movieAva) => movieAva.Title === movieWatch.Title)) {
       setMoviesAva((prevMoviesAva) => [...prevMoviesAva, movieWatch]);
@@ -21,41 +30,37 @@ const ListMovies = ({
     handleClickBack();
   };
 
-  const handleChangeRating = (e) => {
-    setRatingMovie((prevRating) => [...prevRating, e.target.value]);
-    console.log("Sua nota no filme: " + ratingMovie);
-  };
-
   console.log("Filmes na lista de Ava:" + moviesAva);
 
   return (
     <>
       {movie && (
-        <div className="box">
-          <ul className="list ">
-            {movie.map((movies) => (
-              <li key={movies.Title}>
-                <img
+        <main className="main">
+          <div className="box">
+            <ul className="list list-movies">
+              {movie.map((movies) => (
+                <li
                   onClick={() => {
                     handleClickMovie(movies);
                   }}
-                  src={movies.Poster}
-                  alt={movies.Plot}
-                />
-                <h3>{movies.Title}</h3>
-                <p>
-                  <img id="star-img" src="./img/schedule.png" alt="" />
-                  {movies.Year}
-                </p>
-              </li>
-            ))}
-          </ul>
-        </div>
+                  key={movies.Title}
+                >
+                  <img src={movies.Poster} alt={movies.Plot} />
+                  <h3>{movies.Title}</h3>
+                  <p>
+                    <img id="star-img" src="./img/schedule.png" alt="" />
+                    {movies.Year}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </main>
       )}
       {movieWatch && (
-        <div className="box movies-watched">
-          <ul>
-            <li className="details">
+        <div className="box">
+          <ul className="details">
+            <li>
               <button onClick={handleClickBack} className="btn-back">
                 <img src="./img/left.png" alt="" />
               </button>
@@ -74,20 +79,15 @@ const ListMovies = ({
                 <form onSubmit={handleAddMovie}>
                   <h3 className="tittle-nota">Sua nota:</h3>
                   <select
-                    value={ratingMovie}
-                    onChange={handleChangeRating}
                     className="select-nota"
+                    name="rating"
+                    defaultValue={1}
                   >
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
+                    {Array.from({ length: 10 }, (_, i) => (
+                      <option key={i} value={i + 1}>
+                        {i + 1}
+                      </option>
+                    ))}
                   </select>
                   <button onClick={handleVisibleLIst} className="btn-add">
                     {" "}
@@ -96,7 +96,7 @@ const ListMovies = ({
                 </form>
               </div>
 
-              <section className="summary">
+              <section className="">
                 <p>{movieWatch.Plot}</p>
                 <p>Elenco: {movieWatch.Actors}</p>
                 <p>Direção: {movieWatch.Director}</p>
@@ -105,37 +105,46 @@ const ListMovies = ({
           </ul>
         </div>
       )}
-      {moviesAva.length !== 0 && visibleList && (
-        <div className="movies-list">
-          <button onClick={handleVisibleLIst} className="btn-toggle">
-            -
-          </button>
-          <h2>FILMES ASSISTIDOS</h2>
-          <div className="header-info">
-            <img id="star-img" src="./img/film-slate.png" alt="logo de filme" />
-            <h3>{moviesAva.length} Filmes</h3>
-            <img id="star-img" src="./img/deadline.png" alt="" />
-            <h3> 0 min</h3>
+      {moviesAva.length !== 0 && (
+        <div className="box">
+          <div className="summary">
+            <button onClick={handleVisibleLIst} className="btn-toggle">
+              -
+            </button>
+            <h2>FILMES ASSISTIDOS</h2>
+            <div>
+              <p>
+                <img
+                  id="star-img"
+                  src="./img/film-slate.png"
+                  alt="logo de filme"
+                />
+                <span>{moviesAva.length} Filmes</span>
+              </p>
+              <p>
+                <img id="star-img" src="./img/deadline.png" alt="" />
+                <span> 0 min</span>
+              </p>
+            </div>
           </div>
-          <div className="movie-watch">
-            <ul className="list">
-              {moviesAva.map((movieAva, index) => (
-                <li key={movieAva.Title}>
-                  <img
-                    style={{ width: 50 }}
-                    src={movieAva.Poster}
-                    alt={movieAva.Plot}
-                  />
-                  <h3>{movieAva.Title}</h3>
-                  <p>
-                    {" "}
-                    <img id="star-img" src="./img/star-rating.png" alt="" />
-                    Sua nota : {ratingMovie[index]}
-                  </p>
-                </li>
-              ))}
-            </ul>
-          </div>
+
+          <ul className="list">
+            {moviesAva.map((movieAva, index) => (
+              <li key={movieAva.Title}>
+                <img
+                  style={{ width: 50 }}
+                  src={movieAva.Poster}
+                  alt={movieAva.Plot}
+                />
+                <h3>{movieAva.Title}</h3>
+                <p>
+                  {" "}
+                  <img id="star-img" src="./img/star-rating.png" alt="" />
+                  Sua nota : {ratingMovie[index].userRating}
+                </p>
+              </li>
+            ))}
+          </ul>
         </div>
       )}
     </>
