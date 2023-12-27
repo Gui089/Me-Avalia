@@ -10,6 +10,14 @@ const ListMovies = ({
   const [visibleList, setVisibleList] = useState(false);
   const [ratingMovie, setRatingMovie] = useState([]);
 
+  const handleClickDelete = (id) => {
+    setMoviesAva((prev) => prev.filter((p) => p.Title !== id));
+    setRatingMovie((prev) => {
+      const newRatingMovie = prev.filter((p) => p.Title !== id);
+      console.log("New Rating Movie:", newRatingMovie);
+      return newRatingMovie;
+    });
+  };
   const handleVisibleLIst = (clickedMovie) =>
     setVisibleList((prev) =>
       prev?.id === clickedMovie.id ? false : clickedMovie,
@@ -18,9 +26,13 @@ const ListMovies = ({
   const handleAddMovie = (e) => {
     e.preventDefault();
     const { rating } = e.target.elements;
+    const newRating = rating.value;
+
+    console.log("Adding new rating: " + newRating);
+
     setRatingMovie((prev) => [
       ...prev,
-      { ...ratingMovie, userRating: rating.value },
+      { Title: movieWatch.Title, userRating: newRating },
     ]);
     setVisibleList(false);
 
@@ -129,7 +141,7 @@ const ListMovies = ({
           </div>
 
           <ul className="list">
-            {moviesAva.map((movieAva, index) => (
+            {moviesAva.map((movieAva) => (
               <li key={movieAva.Title}>
                 <img
                   style={{ width: 50 }}
@@ -140,8 +152,19 @@ const ListMovies = ({
                 <p>
                   {" "}
                   <img id="star-img" src="./img/star-rating.png" alt="" />
-                  Sua nota : {ratingMovie[index].userRating}
+                  Sua nota :{" "}
+                  {
+                    ratingMovie.find(
+                      (rating) => rating.Title === movieAva.Title,
+                    )?.userRating
+                  }
                 </p>
+                <button
+                  onClick={() => handleClickDelete(movieAva.Title)}
+                  className="btn-delete"
+                >
+                  X
+                </button>
               </li>
             ))}
           </ul>

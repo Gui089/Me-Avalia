@@ -193,8 +193,8 @@ body {
   aspect-ratio: 1;
   border-radius: 50%;
   border: none;
-  background-color: var(--color-red);
-  color: var(--color-background-900);
+  background-color: #fa5252;
+  color: #efcec0;
   font-size: 0.9rem;
   font-weight: bold;
   cursor: pointer;
@@ -202,7 +202,7 @@ body {
 }
 
 .btn-delete:hover {
-  background-color: var(--color-red-dark);
+  background-color: #e03131;
 }
 
 .summary {
