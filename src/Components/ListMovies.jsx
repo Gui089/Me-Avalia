@@ -1,5 +1,8 @@
 import { useState } from "react";
 
+const getTotalMinutes = (moviesAva) =>
+  moviesAva?.reduce((acc, item) => acc + +item.Runtime.split(" ")[0], 0);
+
 const ListMovies = ({
   movie,
   movieWatch,
@@ -135,7 +138,7 @@ const ListMovies = ({
               </p>
               <p>
                 <img id="star-img" src="./img/deadline.png" alt="" />
-                <span> 0 min</span>
+                <span> {getTotalMinutes(moviesAva)} min</span>
               </p>
             </div>
           </div>
