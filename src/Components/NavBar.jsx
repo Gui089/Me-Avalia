@@ -22,7 +22,11 @@ const NavBar = ({ setMovie, movie }) => {
 
   return (
     <nav className="nav-bar">
-      <img className="logo" src="./img/logo-me-avalia.png" alt="" />
+      <img
+        className="logo"
+        src="https://github.com/Gui089/Me-Avalia/blob/main/img/logo-me-avalia.png?raw=true"
+        alt=""
+      />
       <form onSubmit={handleFormSubmit} className="form-search" action="">
         <input
           value={searchMovie}
