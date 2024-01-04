@@ -7,12 +7,7 @@ const getTotalMinutes = (moviesAva) =>
     0,
   );
 
-const ListMovies = ({
-  movie,
-  movieWatch,
-  handleClickBack,
-  handleClickMovie,
-}) => {
+const useWatchtedMovies = () => {
   const [moviesAva, setMoviesAva] = useState([]);
   const [visibleList, setVisibleList] = useState(false);
   const [ratingMovie, setRatingMovie] = useState([]);
@@ -25,6 +20,34 @@ const ListMovies = ({
       return newRatingMovie;
     });
   };
+
+  return {
+    moviesAva,
+    setMoviesAva,
+    visibleList,
+    setVisibleList,
+    ratingMovie,
+    setRatingMovie,
+    handleClickDelete,
+  };
+};
+
+const ListMovies = ({
+  movie,
+  movieWatch,
+  handleClickBack,
+  handleClickMovie,
+}) => {
+  const {
+    moviesAva,
+    setMoviesAva,
+    visibleList,
+    setVisibleList,
+    ratingMovie,
+    setRatingMovie,
+    handleClickDelete,
+  } = useWatchtedMovies();
+
   const handleVisibleLIst = (clickedMovie) =>
     setVisibleList((prev) =>
       prev?.id === clickedMovie.id ? false : clickedMovie,
