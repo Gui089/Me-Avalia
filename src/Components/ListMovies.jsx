@@ -1,7 +1,11 @@
 import { useState } from "react";
 
 const getTotalMinutes = (moviesAva) =>
-  moviesAva?.reduce((acc, item) => acc + +item.Runtime.split(" ")[0], 0);
+  moviesAva?.reduce(
+    (acc, item) =>
+      acc + (item.Runtime === "N/A" ? 0 : +item.Runtime.split(" ")[0]),
+    0,
+  );
 
 const ListMovies = ({
   movie,
@@ -47,6 +51,8 @@ const ListMovies = ({
 
   console.log("Filmes na lista de Ava:" + moviesAva);
 
+  const getMoviePoster = (src) => (src === "N/A" ? "./img/404-img.jpg" : src);
+
   return (
     <>
       {movie && (
@@ -60,7 +66,7 @@ const ListMovies = ({
                   }}
                   key={movies.Title}
                 >
-                  <img src={movies.Poster} alt={movies.Plot} />
+                  <img src={getMoviePoster(movies.Poster)} alt={movies.Plot} />
                   <h3>{movies.Title}</h3>
                   <p>
                     <img id="star-img" src="./img/schedule.png" alt="" />
@@ -80,7 +86,10 @@ const ListMovies = ({
                 <img src="./img/left.png" alt="" />
               </button>
               <header className="details-overview ">
-                <img src={movieWatch.Poster} alt={movieWatch.Plot} />
+                <img
+                  src={getMoviePoster(movieWatch.Poster)}
+                  alt={movieWatch.Plot}
+                />
                 <h2>{movieWatch.Title}</h2>
                 <p>{movieWatch.Runtime}</p>
                 <p>{movieWatch.Genre}</p>
