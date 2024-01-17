@@ -1,13 +1,19 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const NavBar = ({ setMovie, movie }) => {
   const [searchMovie, setSearchMovie] = useState("");
   const [listMovie, setListMovie] = useState("");
+  const formRef = useRef(null);
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
     setListMovie(searchMovie);
   };
+
+  useEffect(() => {
+      formRef.current.reset();
+      console.log('Executou o useRef')
+  }, [movie]);
 
   useEffect(() => {
     const getMovies = async () => {
@@ -27,11 +33,12 @@ const NavBar = ({ setMovie, movie }) => {
         src="https://github.com/Gui089/Me-Avalia/blob/main/img/logo-me-avalia.png?raw=true"
         alt=""
       />
-      <form onSubmit={handleFormSubmit} className="form-search" action="">
+      <form ref={formRef} onSubmit={handleFormSubmit} className="form-search" action="">
         <input
-          value={searchMovie}
+          name="searchMovie"
           onChange={(e) => setSearchMovie(e.target.value)}
           className="search"
+          placeholder='Buscar Filmes'
         />
         <button className="btn-search">Buscar</button>
       </form>
